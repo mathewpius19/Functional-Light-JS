@@ -28,3 +28,36 @@ function isEven(v){
     return !isOdd(v) // instead of repeating isOdd here use a negate utility function
 }
 ```
+
+# Function Composition
+
+* Refers to a function that uses the output of another function as direct input.
+* Figure out ways to make code for declarative rather than imperative by using code abstraction.
+
+```js
+function sum(x,y){
+    return x+y
+}
+function mult(x,y){
+    return x*y
+}
+var result = mult(1,2)
+sum(result,3)//5
+// instead of creating three separate functions and storing it in a variable to get a result, try making it in one complete step.
+```
+
+* Try automating the task of function composition, i.e two functions in which one takes the output of the other as input.(refer file FunctionCompositon)
+* This is called a Higher Order Function. A Higher Order Function is a function that either or both takes one or more functions as inputs and/or makes a function as an output.
+
+```js
+foo(bar(baz(2)));
+compose(foo,bar,baz)(2) //order the functions the way you wanna list it
+pipe((baz,bar,foo)(2) // order the functions the way they are executed
+```
+* Design the functions you feed into compose or pipe to be unary for easier usage
+```js 
+function composeRight(fn2, fn1){
+    return function compose(...args){
+        return f2(f1(...args)); // fn2 takes one input as fn1 gives out only one output.Therefore make sure you feed unary functions.
+    }
+}
