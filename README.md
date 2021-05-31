@@ -61,3 +61,17 @@ function composeRight(fn2, fn1){
         return f2(f1(...args)); // fn2 takes one input as fn1 gives out only one output.Therefore make sure you feed unary functions.
     }
 }
+```
+# Immutability
+* const keyword gives you assingment immutability but not value immmutability.
+* Instead of changing values that are defined by someone in a program, create a copy of that value and then use it.
+``` js
+function doubleMutable(list){
+    var newList = []
+    for(var i=0;i<list.length;i++){
+        newList[i] = list[i]*2 // here we create a new array to store the changed values.
+    }
+    return newList
+}
+var result = doubleMutable([1,2,3,4])
+```

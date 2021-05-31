@@ -24,3 +24,4 @@ function piped(fn1, fn2){ // generalised function that automates the task of cre
 
 var multSumPiped = piped(mult,sum)
 console.log(multSumPiped(1,2,3)) //5
+    
