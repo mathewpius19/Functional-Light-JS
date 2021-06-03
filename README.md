@@ -75,3 +75,56 @@ function doubleMutable(list){
 }
 var result = doubleMutable([1,2,3,4])
 ```
+
+# Closure
+* Closure is when a function 'remembers' the variables around it even when the function is executed elsewhere.
+``` js
+function unary(fn){
+    return function one(arg){
+        return fn(arg) // it is able to reference fn here because of closure.
+    }
+}
+```
+
+# Specializing a generalized utility (Partial Application)
+* we can define specialized functions from a given generalised function to do specific tasks and make our work easier.
+* eg
+``` js 
+function add(x,y){
+    return x+y;
+}
+function partial(fn, ...firstArgs)
+{
+    return function applied(...lastArgs)
+    {
+        return fn(...firstArgs, ...lastArgs)
+    };
+}
+
+var addToTen = partial(add, 10) // here we create a specialized version of add to add 10 to any value.
+addToTen(32) // 42
+```
+# Currying
+* Currying and partial application are two different techniques to specialize a generalized function.
+* Currying accepts all inputs one by one and returns  a specialized function for each of that input untill all the inputs are completely accepted. After this it returns the orginal function as a specialized one.
+
+```js
+
+var add3 = curry(function add3(x,y,z){
+    return x+y+z;
+})
+
+var f = add3(3) //f is a specialized fn of add3
+var p = f(4) // p is a specialized fn of f which is a specialized fn of add3
+p(5); //12 // in the end, it calls the orginal fn with all the three inputs
+
+add3(3)(4)(5); //12
+```
+
+# Recursion
+* Recursion is when a function keeps calling itself until it reaches a base condition and it stops calling itself.
+* Recursion and iteration are isomorphic.
+* Proper Tail Call form: Rearranging your recursive function so that the memory on the call stack will not be exhausted and you have unlimited memory or itll run in a fixed amount of memory.
+* A tail call occurs when a function calls another as its last action, so it has nothing else to do. A PTC does not need any extra stack space when doing a tail call.
+* Continuation Passing Style(CPS) which is organizing code so that each function receives another function to execute at its end.
+* Trampoline functions are functions that are similair to CPS but instead of passing a function it will return a function if a function is the result of the function being called.
