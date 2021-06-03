@@ -72,9 +72,21 @@ function Trampoline(fn){
     return function trampolined(...args){
         var result = fn(...args)
     
-    while(typeof result === "function"){
-        return result() // if we get a function as a result, we call the function again and again until we get non function as result.
+    while(typeof result == "function"){
+        result =  result() // if we get a function as a result, we call the function again and again until we get non function as result.
     }
     return result
 };
 }
+
+//example of using trampoline utility
+var sumTrampolined = Trampoline(function f(sum, num, ...nums){
+    sum+=num;
+    if(nums.length==0) return sum;
+    return function(){
+        return f(sum,...nums)
+    };
+});
+
+var trampolinedResult = sumTrampolined(3,4,5,6,7,8,9)
+console.log("Trampolined Result:",trampolinedResult);
