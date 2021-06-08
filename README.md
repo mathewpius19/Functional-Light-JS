@@ -128,3 +128,11 @@ add3(3)(4)(5); //12
 * A tail call occurs when a function calls another as its last action, so it has nothing else to do. A PTC does not need any extra stack space when doing a tail call.
 * Continuation Passing Style(CPS) which is organizing code so that each function receives another function to execute at its end.
 * Trampoline functions are functions that are similair to CPS but instead of passing a function it will return a function if a function is the result of the function being called.
+
+# List Transformations
+* MAP: Perform a utility function for each item in a list. Creates an array of the same size with the mapped results in it.
+* FILTER: Perform a utility filter function on each item and returns true or false.If its true we add it into the result array and if its false we filter it out. Creates an array either shorter or same size of the original array.
+* REDUCE: Array.reduce() method is a combiner. Just like the map() method, reduce() iterates through a list performing a transformation on each value. The difference is an initial value is also passed which the items are composed onto creating a smaller, "reduced" list or even a single return value.
+
+* FUSION: Fusion is when we take a series of adjacent list operations and combine these utilities into one operator or function.
+* TRANSDUCING: They are composable and efficient data transformation functions that do not create intermediate collections.
